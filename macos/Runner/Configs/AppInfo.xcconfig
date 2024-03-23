@@ -5,10 +5,10 @@
 // 'flutter create' template.
 
 // The application's name. By default this is also the title of the Flutter window.
-PRODUCT_NAME = posture_stamp_maker
+PRODUCT_NAME = P.S.M.
 
 // The application's bundle identifier
 PRODUCT_BUNDLE_IDENTIFIER = work.nyaacinth.postureStampMaker
 
 // The copyright displayed in application information
-PRODUCT_COPYRIGHT = Copyright © 2024 work.nyaacinth. All rights reserved.
+PRODUCT_COPYRIGHT = Copyright © 2024 Nyaacinth. All rights reserved.
