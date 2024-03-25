@@ -1,4 +1,4 @@
-name: posture_stamp_maker
+name: postage_stamp_maker
 description: Let's make some posture stamps!
 publish_to: 'none'
 version: 0.1.0
@@ -18,3 +18,7 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  fonts:
+    - family: Sacramento
+      fonts:
+        - asset: assets/fonts/Sacramento-Regular.ttf
