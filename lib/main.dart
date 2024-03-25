@@ -69,9 +69,10 @@ class PostageStampContainer extends StatelessWidget {
       child: Container(
         margin: const EdgeInsets.all(10),
         padding: const EdgeInsets.all(10),
-        decoration: BoxDecoration(
+        decoration: ShapeDecoration(
           color: Colors.white,
-          boxShadow: [
+          shape: const PostageStampShapeBorder(cuttingSize: 5),
+          shadows: [
             BoxShadow(blurRadius: 10, color: Colors.grey.shade300),
           ],
         ),
@@ -89,4 +90,48 @@ class PostageStampContainer extends StatelessWidget {
       ),
     );
   }
+}
+
+class PostageStampShapeBorder extends ShapeBorder {
+  final double cuttingSize;
+
+  const PostageStampShapeBorder({required this.cuttingSize});
+
+  @override
+  Path getInnerPath(Rect rect, {TextDirection? textDirection}) => Path();
+
+  @override
+  Path getOuterPath(Rect rect, {TextDirection? textDirection}) {
+    final path = Path();
+
+    path.moveTo(rect.left - cuttingSize / 2, rect.top - cuttingSize / 2);
+    for (double i = 0; i < rect.width - cuttingSize; i += cuttingSize * 2) {
+      path.relativeLineTo(cuttingSize, cuttingSize);
+      path.relativeLineTo(cuttingSize, -cuttingSize);
+    }
+    for (double i = 0; i < rect.height - cuttingSize; i += cuttingSize * 2) {
+      path.relativeLineTo(cuttingSize, cuttingSize);
+      path.relativeLineTo(-cuttingSize, cuttingSize);
+    }
+    for (double i = 0; i < rect.width - cuttingSize; i += cuttingSize * 2) {
+      path.relativeLineTo(-cuttingSize, cuttingSize);
+      path.relativeLineTo(-cuttingSize, -cuttingSize);
+    }
+    for (double i = 0; i < rect.height - cuttingSize; i += cuttingSize * 2) {
+      path.relativeLineTo(cuttingSize, -cuttingSize);
+      path.relativeLineTo(-cuttingSize, -cuttingSize);
+    }
+    path.close();
+
+    return path;
+  }
+
+  @override
+  void paint(Canvas canvas, Rect rect, {TextDirection? textDirection}) {}
+
+  @override
+  ShapeBorder scale(double t) => this;
+
+  @override
+  EdgeInsetsGeometry get dimensions => EdgeInsets.zero;
 }
