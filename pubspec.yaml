@@ -1,5 +1,5 @@
 name: postage_stamp_maker
-description: Let's make some posture stamps!
+description: Let's make some postage stamps!
 publish_to: 'none'
 version: 0.1.0
 
@@ -9,7 +9,10 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  image_picker: ^1.0.7
+  path_provider: ^2.1.2
   provider: ^6.1.2
+  screenshot: ^2.3.0
 
 dev_dependencies:
   flutter_test:

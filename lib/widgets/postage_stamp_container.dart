@@ -19,11 +19,11 @@ class PostageStampContainer extends StatelessWidget {
       child: Container(
         margin: const EdgeInsets.all(10),
         padding: const EdgeInsets.all(10),
-        decoration: ShapeDecoration(
+        decoration: const ShapeDecoration(
           color: Colors.white,
-          shape: const _PostageStampShapeBorder(cuttingSize: 5),
+          shape: _PostageStampShapeBorder(cuttingSize: 5),
           shadows: [
-            BoxShadow(blurRadius: 10, color: Colors.grey.shade300),
+            BoxShadow(blurRadius: 5, color: Colors.black54),
           ],
         ),
         child: Container(
