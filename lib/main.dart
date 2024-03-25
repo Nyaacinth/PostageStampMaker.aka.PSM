@@ -24,24 +24,8 @@ class MainApp extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 20),
-              Transform(
-                alignment: Alignment.center,
-                transform: Matrix4.rotationZ(-0.03),
-                child: Container(
-                  margin: const EdgeInsets.all(10),
-                  padding: const EdgeInsets.all(10),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    boxShadow: [
-                      BoxShadow(blurRadius: 10, color: Colors.grey.shade300),
-                    ],
-                  ),
-                  child: Container(
-                    color: Colors.grey.shade100,
-                    height: 200,
-                    width: 160,
-                  ),
-                ),
+              PostageStampContainer(
+                child: Image.asset('assets/images/stamp-placeholder.png'),
               ),
               const SizedBox(height: 20),
               ButtonBar(
@@ -62,6 +46,44 @@ class MainApp extends StatelessWidget {
                 ],
               )
             ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class PostageStampContainer extends StatelessWidget {
+  final Widget child;
+
+  const PostageStampContainer({
+    super.key,
+    required this.child,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Transform(
+      alignment: Alignment.center,
+      transform: Matrix4.rotationZ(-0.03),
+      child: Container(
+        margin: const EdgeInsets.all(10),
+        padding: const EdgeInsets.all(10),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          boxShadow: [
+            BoxShadow(blurRadius: 10, color: Colors.grey.shade300),
+          ],
+        ),
+        child: Container(
+          color: Colors.grey.shade100,
+          height: 200,
+          width: 160,
+          child: ClipRect(
+            child: FittedBox(
+              fit: BoxFit.cover,
+              child: child,
+            ),
           ),
         ),
       ),
