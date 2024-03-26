@@ -1,6 +1,6 @@
-import 'dart:typed_data';
-
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:image_downloader_web/image_downloader_web.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:screenshot/screenshot.dart';
@@ -86,14 +86,24 @@ class _MainAppState extends State<MainApp> {
                   ),
                   ElevatedButton(
                     onPressed: () async {
-                      final directory = (await getDownloadsDirectory())?.path;
-                      debugPrint(directory);
-                      if (directory != null) {
-                        stampScreenshotController.captureAndSave(
-                          directory,
-                          fileName:
-                              'stamp-${DateTime.now().microsecondsSinceEpoch}.png',
-                        );
+                      if (kIsWeb) {
+                        stampScreenshotController.capture().then((image) {
+                          if (image != null) {
+                            WebImageDownloader.downloadImageFromUInt8List(
+                              uInt8List: image,
+                            );
+                          }
+                        });
+                      } else {
+                        final directory = (await getDownloadsDirectory())?.path;
+                        debugPrint(directory);
+                        if (directory != null) {
+                          stampScreenshotController.captureAndSave(
+                            directory,
+                            fileName:
+                                'stamp-${DateTime.now().microsecondsSinceEpoch}.png',
+                          );
+                        }
                       }
                     },
                     child: const Text('Save Stamp'),
