@@ -86,12 +86,13 @@ class _MainAppState extends State<MainApp> {
                   ),
                   ElevatedButton(
                     onPressed: () async {
+                      final fileName =
+                          'stamp-${DateTime.now().microsecondsSinceEpoch}.png';
                       if (kIsWeb) {
                         stampScreenshotController.capture().then((image) {
                           if (image != null) {
                             WebImageDownloader.downloadImageFromUInt8List(
-                              uInt8List: image,
-                            );
+                                uInt8List: image, name: fileName);
                           }
                         });
                       } else {
@@ -100,8 +101,7 @@ class _MainAppState extends State<MainApp> {
                         if (directory != null) {
                           stampScreenshotController.captureAndSave(
                             directory,
-                            fileName:
-                                'stamp-${DateTime.now().microsecondsSinceEpoch}.png',
+                            fileName: fileName,
                           );
                         }
                       }
