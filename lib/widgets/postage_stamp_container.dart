@@ -6,9 +6,12 @@ import 'package:flutter/material.dart';
 class PostageStampContainer extends StatelessWidget {
   final Widget child;
 
+  final bool useRedRubberStamp;
+
   const PostageStampContainer({
     super.key,
     required this.child,
+    this.useRedRubberStamp = false,
   });
 
   @override
@@ -16,27 +19,55 @@ class PostageStampContainer extends StatelessWidget {
     return Transform(
       alignment: Alignment.center,
       transform: Matrix4.rotationZ(-0.03),
-      child: Container(
-        margin: const EdgeInsets.all(10),
-        padding: const EdgeInsets.all(10),
-        decoration: const ShapeDecoration(
-          color: Colors.white,
-          shape: _PostageStampShapeBorder(cuttingSize: 5),
-          shadows: [
-            BoxShadow(blurRadius: 5, color: Colors.black54),
-          ],
-        ),
-        child: Container(
-          color: Colors.grey.shade100,
-          height: 200,
-          width: 160,
-          child: ClipRect(
-            child: FittedBox(
-              fit: BoxFit.cover,
-              child: child,
+      child: Stack(
+        children: [
+          Container(
+            margin: const EdgeInsets.all(10),
+            padding: const EdgeInsets.all(10),
+            decoration: const ShapeDecoration(
+              color: Colors.white,
+              shape: _PostageStampShapeBorder(cuttingSize: 5),
+              shadows: [
+                BoxShadow(blurRadius: 5, color: Colors.black54),
+              ],
+            ),
+            child: Container(
+              color: Colors.grey.shade100,
+              height: 200,
+              width: 160,
+              child: ClipRect(
+                child: FittedBox(
+                  fit: BoxFit.cover,
+                  child: child,
+                ),
+              ),
             ),
           ),
-        ),
+          Positioned(
+            bottom: 12,
+            right: 3,
+            child: Transform(
+              alignment: Alignment.center,
+              transform: Matrix4.rotationZ(-0.1),
+              child: Opacity(
+                opacity: 0.9,
+                child: ColorFiltered(
+                  colorFilter: ColorFilter.mode(
+                    useRedRubberStamp
+                        ? const Color(0xffaf3c3c)
+                        : const Color(0xff367caf),
+                    BlendMode.srcATop,
+                  ),
+                  child: Image.asset(
+                    'assets/images/nocolor-rubber-stamp.png',
+                    width: 140,
+                    isAntiAlias: true,
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

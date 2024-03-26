@@ -29,6 +29,8 @@ class _MainAppState extends State<MainApp> {
 
   final stampScreenshotController = ScreenshotController();
 
+  bool useRedRubberStamp = false;
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -52,6 +54,7 @@ class _MainAppState extends State<MainApp> {
               Screenshot(
                 controller: stampScreenshotController,
                 child: PostageStampContainer(
+                  useRedRubberStamp: useRedRubberStamp,
                   child: (image != null)
                       ? Image.memory(image!)
                       : Image.asset('assets/images/stamp-placeholder.png'),
@@ -94,6 +97,27 @@ class _MainAppState extends State<MainApp> {
                       }
                     },
                     child: const Text('Save Stamp'),
+                  ),
+                ],
+              ),
+              Row(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Transform.scale(
+                    scale: 0.7,
+                    child: Switch(
+                      value: useRedRubberStamp,
+                      onChanged: (newValue) {
+                        setState(() {
+                          useRedRubberStamp = newValue;
+                        });
+                      },
+                    ),
+                  ),
+                  const Padding(
+                    padding: EdgeInsets.only(left: 10, right: 10),
+                    child: Text('Use Red Rubber Stamp'),
                   ),
                 ],
               )
