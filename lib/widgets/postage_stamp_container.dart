@@ -19,16 +19,18 @@ class PostageStampContainer extends StatelessWidget {
     return Transform(
       alignment: Alignment.center,
       transform: Matrix4.rotationZ(-0.03),
+      filterQuality: FilterQuality.high,
       child: Stack(
         children: [
           Container(
-            margin: const EdgeInsets.all(10),
+            margin:
+                const EdgeInsets.only(top: 18, bottom: 18, left: 50, right: 50),
             padding: const EdgeInsets.all(10),
             decoration: const ShapeDecoration(
               color: Colors.white,
               shape: _PostageStampShapeBorder(cuttingSize: 5),
               shadows: [
-                BoxShadow(blurRadius: 5, color: Colors.black54),
+                BoxShadow(blurRadius: 0.1, color: Colors.black),
               ],
             ),
             child: Container(
@@ -44,13 +46,13 @@ class PostageStampContainer extends StatelessWidget {
             ),
           ),
           Positioned(
-            bottom: 12,
-            right: 3,
+            bottom: 4,
+            right: 0,
             child: Transform(
               alignment: Alignment.center,
-              transform: Matrix4.rotationZ(-0.1),
+              transform: Matrix4.rotationZ(-0.4),
               child: Opacity(
-                opacity: 0.9,
+                opacity: 0.8,
                 child: ColorFiltered(
                   colorFilter: ColorFilter.mode(
                     useRedRubberStamp
@@ -60,7 +62,7 @@ class PostageStampContainer extends StatelessWidget {
                   ),
                   child: Image.asset(
                     'assets/images/nocolor-rubber-stamp.png',
-                    width: 140,
+                    width: 200,
                     isAntiAlias: true,
                   ),
                 ),
