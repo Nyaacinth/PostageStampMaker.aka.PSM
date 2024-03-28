@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
 
-/// Postage Stamp Container
-///
-/// Fixed width (160) and height (200), fixed cutting size (5)
 class PostageStampContainer extends StatelessWidget {
   final Widget child;
 
