@@ -1,0 +1,8 @@
+[
+  {
+    "label": "Run Flutter App (macOS)",
+    "command": "flutter",
+    "args": ["run", "-d", "macos"],
+    "allow_concurrent_runs": false
+  }
+]
